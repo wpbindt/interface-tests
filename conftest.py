@@ -1,4 +1,4 @@
-from typing import Iterator
+from typing import Any, Iterator
 
 import pytest
 
@@ -27,6 +27,6 @@ def double3() -> Iterator[Double]:
         double3.__name__,
     ]
 )
-def double(request) -> Double:
+def double(request: Any) -> Double:
     return request.getfixturevalue(request.param)
 
