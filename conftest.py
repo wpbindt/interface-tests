@@ -1,20 +1,22 @@
+from typing import Iterator
+
 import pytest
 
-from main import implementation1, implementation2, faulty_implementation
+from main import implementation1, implementation2, faulty_implementation, Double
 
 
 @pytest.fixture
-def double1():
+def double1() -> Iterator[Double]:
     yield implementation1
 
 
 @pytest.fixture
-def double2():
+def double2() -> Iterator[Double]:
     yield implementation2
 
 
 @pytest.fixture
-def double3():
+def double3() -> Iterator[Double]:
     yield faulty_implementation
 
 
@@ -25,6 +27,6 @@ def double3():
         double3.__name__,
     ]
 )
-def double(request):
+def double(request) -> Double:
     return request.getfixturevalue(request.param)
 
